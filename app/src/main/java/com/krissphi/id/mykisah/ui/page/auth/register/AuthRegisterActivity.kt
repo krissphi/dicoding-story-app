@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.krissphi.id.mykisah.R
 import com.krissphi.id.mykisah.data.repository.ViewModelFactory
 import com.krissphi.id.mykisah.databinding.ActivityAuthRegisterBinding
-import com.krissphi.id.mykisah.ui.page.auth.login.AuthLoginActivity
+import com.krissphi.id.mykisah.ui.page.welcome.WelcomeActivity
 
 class AuthRegisterActivity : AppCompatActivity() {
 
@@ -57,15 +57,17 @@ class AuthRegisterActivity : AppCompatActivity() {
             result.error?.let {
                 if (!it) {
                     Toast.makeText(this, getString(R.string.regist_success), Toast.LENGTH_SHORT).show()
-                     val intent = Intent(this, AuthLoginActivity::class.java)
-                     startActivity(intent)
-                     finish()
+                    val intent = Intent(this, WelcomeActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
                 }
             }
         }
 
-        registerViewModel.errorMessage.observe(this) { message ->
-            Toast.makeText(this, getString(R.string.error_message), Toast.LENGTH_LONG).show()
+        registerViewModel.errorMessage.observe(this) { result ->
+            val message = result.message ?: getString(R.string.error_unknown)
+            Toast.makeText(this, getString(R.string.error_message, message), Toast.LENGTH_LONG).show()
         }
     }
 

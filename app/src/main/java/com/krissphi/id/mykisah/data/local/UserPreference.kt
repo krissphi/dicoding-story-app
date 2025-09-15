@@ -25,23 +25,23 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
-    private val TOKEN_KEY = stringPreferencesKey("TOKEN_KEY")
+    private val tokenKey = stringPreferencesKey("TOKEN_KEY")
 
     fun getTokenKey(): Flow<String> {
         return dataStore.data.map { preferences ->
-            preferences[TOKEN_KEY] ?: ""
+            preferences[tokenKey] ?: ""
         }
     }
 
     suspend fun saveTokenKey(token: String) {
         dataStore.edit { preferences ->
-            preferences[TOKEN_KEY] = token
+            preferences[tokenKey] = token
         }
     }
 
     suspend fun deleteTokenKey() {
         dataStore.edit { preferences ->
-            preferences.remove(TOKEN_KEY)
+            preferences.remove(tokenKey)
         }
     }
 

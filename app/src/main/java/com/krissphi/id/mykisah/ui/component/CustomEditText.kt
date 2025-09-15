@@ -51,24 +51,6 @@ class CustomEditText @JvmOverloads constructor(
 
     }
 
-//    override fun setError(error: CharSequence?) {
-//        // arahkan visual error ke TextInputLayout
-//        findTIL()?.apply {
-//            isErrorEnabled = !error.isNullOrEmpty()
-//            this.error = error
-//        }
-//        // cegah EditText menampilkan ikon error di ujung kanan (biang tabrakan)
-//        super.setError(null)
-//    }
-//
-//    private fun findTIL(): TextInputLayout? {
-//        var p = parent
-//        while (p != null && p !is TextInputLayout) {
-//            p = p.parent
-//        }
-//        return p
-//    }
-
     private fun isEmailType(): Boolean =
         (inputType and InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS) != 0
 

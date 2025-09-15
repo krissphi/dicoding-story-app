@@ -26,7 +26,7 @@
         android:theme="@style/Theme.MyKisah">
 
         <activity
-            android:name=".ui.page.story.main.MainActivity"
+            android:name=".ui.page.welcome.WelcomeActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +48,7 @@
             android:name=".ui.page.auth.login.AuthLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.page.welcome.WelcomeActivity"
+            android:name=".ui.page.story.main.MainActivity"
             android:exported="false">
         </activity>
 

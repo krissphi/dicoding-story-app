@@ -3,9 +3,7 @@ package com.krissphi.id.mykisah.ui.page.story.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.krissphi.id.mykisah.data.local.UserPreference
 import com.krissphi.id.mykisah.data.remote.response.StoryItem
 import com.krissphi.id.mykisah.data.repository.AuthRepository
 import com.krissphi.id.mykisah.data.repository.StoryRepository
@@ -14,7 +12,6 @@ import kotlinx.coroutines.launch
 class StoryViewModel(
     private val storyRepository: StoryRepository,
     private val authRepository: AuthRepository,
-     private val userPreference: UserPreference
 ) : ViewModel() {
 
     private val _stories = MutableLiveData<List<StoryItem>>()
@@ -42,10 +39,6 @@ class StoryViewModel(
                 _isLoading.value = false
             }
         }
-    }
-
-    fun getToken(): LiveData<String> {
-        return userPreference.getTokenKey().asLiveData()
     }
 
     fun logout() {

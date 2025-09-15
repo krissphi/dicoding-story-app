@@ -33,8 +33,23 @@ class WelcomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        setupAction()
-        playAnimation()
+
+        lifecycleScope.launch {
+            val pref = UserPreference.getInstance(applicationContext.dataStore)
+            val token = pref.getTokenKey().first()
+            if (token.isNotBlank()) {
+                navigateToMain()
+            } else {
+                setupAction()
+                playAnimation()
+            }
+        }
+    }
+
+
+    private fun navigateToMain() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun setupAction() {

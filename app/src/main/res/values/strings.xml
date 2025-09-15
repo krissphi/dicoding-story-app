@@ -25,7 +25,8 @@
 
     <string name="form_empty">Harap lengkapi data</string>
 
-    <string name="error_message">Terjadi kesalahan, silahkan coba lagi</string>
+    <string name="error_message">Error %1$s, silahkan coba lagi</string>
+    <string name="error_unknown">Error tidak diketahui</string>
 
     <string name="desc_ic_app">Image of Icon</string>
     <string name="desc_img_story">Image of Story</string>

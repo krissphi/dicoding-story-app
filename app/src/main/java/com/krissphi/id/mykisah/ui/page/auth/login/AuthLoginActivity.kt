@@ -60,12 +60,12 @@ class AuthLoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
-
             }
         }
 
-        loginViewModel.errorMessage.observe(this) { message ->
-            Toast.makeText(this, getString(R.string.error_message), Toast.LENGTH_LONG).show()
+        loginViewModel.errorResponse.observe(this) { result ->
+            val message = result.message ?: getString(R.string.error_unknown)
+            Toast.makeText(this, getString(R.string.error_message, message), Toast.LENGTH_LONG).show()
         }
     }
 }
