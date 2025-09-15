@@ -16,6 +16,7 @@ import com.krissphi.id.mykisah.R
 import com.krissphi.id.mykisah.data.repository.ViewModelFactory
 import com.krissphi.id.mykisah.databinding.ActivityMainBinding
 import com.krissphi.id.mykisah.ui.adapter.StoryAdapter
+import com.krissphi.id.mykisah.ui.page.maps.MapsActivity
 import com.krissphi.id.mykisah.ui.page.story.create.StoryCreateActivity
 import com.krissphi.id.mykisah.ui.page.welcome.WelcomeActivity
 
@@ -66,6 +67,12 @@ class MainActivity : AppCompatActivity() {
 
             R.id.action_add_story -> {
                 goToCreateStory()
+                true
+            }
+
+            R.id.action_look_map -> {
+                val intent = Intent(this, MapsActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

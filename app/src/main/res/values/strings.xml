@@ -39,4 +39,9 @@
     <string name="permission_camera">Izin kamera diperlukan</string>
     <string name="choose_image">Pilih gambar terlebih dahulu</string>
 
+    <string name="other">Lainnya</string>
+
+    <string name="maps">Katakan Peta</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
 </resources>

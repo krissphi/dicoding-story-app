@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_look_map"
+        android:title="@string/story_add"
+        android:icon="@drawable/outline_add_circle_24"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
         android:id="@+id/action_add_story"
         android:title="@string/story_add"
         android:icon="@drawable/outline_add_circle_24"

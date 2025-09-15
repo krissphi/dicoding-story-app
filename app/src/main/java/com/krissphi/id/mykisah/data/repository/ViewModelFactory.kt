@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.krissphi.id.mykisah.ui.page.auth.login.LoginViewModel
 import com.krissphi.id.mykisah.ui.page.auth.register.RegisterViewModel
+import com.krissphi.id.mykisah.ui.page.maps.MapsViewModel
 import com.krissphi.id.mykisah.ui.page.story.create.StoryCreateViewModel
 import com.krissphi.id.mykisah.ui.page.story.detail.StoryDetailViewModel
 import com.krissphi.id.mykisah.ui.page.story.main.StoryViewModel
@@ -39,6 +40,10 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(StoryCreateViewModel::class.java) -> {
                 StoryCreateViewModel(Injection.provideStoryRepository(context)) as T
             }
+            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
+                MapsViewModel(Injection.provideStoryRepository(context)) as T
+            }
+
 
             else -> throw IllegalArgumentException("Unknown ViewModel class")
         }

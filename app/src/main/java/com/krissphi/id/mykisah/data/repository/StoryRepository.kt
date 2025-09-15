@@ -32,4 +32,8 @@ class StoryRepository (
         return apiService.createNewStory(multipartBody, requestBody)
     }
 
+    suspend fun getStoriesWithLocation(): List<StoryItem> {
+        return apiService.getStoriesWithLocation().listStory
+    }
+
 }
