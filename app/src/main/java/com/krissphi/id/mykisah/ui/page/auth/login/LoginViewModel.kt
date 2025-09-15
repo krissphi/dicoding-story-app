@@ -20,8 +20,8 @@ class LoginViewModel(
     private val _loginResponse= MutableLiveData<LoginResponse>()
     val loginResponse: LiveData<LoginResponse> = _loginResponse
 
-    private val _errorMessage = MutableLiveData<ErrorResponse>()
-    val errorMessage: LiveData<ErrorResponse> = _errorMessage
+    private val _errorResponse = MutableLiveData<ErrorResponse>()
+    val errorResponse: LiveData<ErrorResponse> = _errorResponse
 
     fun login(email: String, password: String) {
         _isLoading.value = true
@@ -36,23 +36,24 @@ class LoginViewModel(
                 _loginResponse.value = response
             }
 
-            result.onFailure {
-                val errorResponse = if (it is retrofit2.HttpException) {
-                    val errorBody = it.response()?.errorBody()?.string()
-                    if (errorBody != null) {
+            result.onFailure { exception ->
+                val errorResponse = when (exception) {
+                    is retrofit2.HttpException -> {
+                        // Jika error berasal dari server (misal: 400, 401, 500)
+                        val errorBody = exception.response()?.errorBody()?.string()
                         try {
-                            val gson = com.google.gson.Gson()
-                            gson.fromJson(errorBody, ErrorResponse::class.java)
+                            // Coba ubah JSON error dari server menjadi objek ErrorResponse
+                            com.google.gson.Gson().fromJson(errorBody, ErrorResponse::class.java)
                         } catch (e: Exception) {
-                            ErrorResponse(error = true, message = "An unknown error occurred")
+                            // Jika JSON tidak sesuai atau body kosong
+                            ErrorResponse(true, "Terjadi kesalahan server (Kode: ${exception.code()})")
                         }
-                    } else {
-                        ErrorResponse(error = true, message = "An unknown error occurred")
                     }
-                } else {
-                    ErrorResponse(error = true, message = it.message ?: "An unknown error occurred")
+                    else -> {
+                        ErrorResponse(true, exception.message ?: "Terjadi kesalahan jaringan")
+                    }
                 }
-                _errorMessage.value = errorResponse
+                _errorResponse.value = errorResponse
             }
         }
     }

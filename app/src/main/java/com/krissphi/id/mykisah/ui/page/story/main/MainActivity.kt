@@ -37,20 +37,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        storyViewModel.getToken().observe(this) { token ->
-            if (token.isBlank()) {
-                val intent = Intent(this, WelcomeActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                finish()
-            } else {
-                setSupportActionBar(binding.toolbar)
-                setupRecycleView()
-                setupObserver()
-                setupAction()
-                setupSwipeToRefresh()
-            }
-        }
+        setSupportActionBar(binding.toolbar)
+        setupRecycleView()
+        setupObserver()
+        setupAction()
+        setupSwipeToRefresh()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

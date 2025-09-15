@@ -23,12 +23,10 @@ class CustomButton : AppCompatButton {
         initAttrs(context, null)
     }
 
-    // Constructor for inflating the view from XML
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initAttrs(context, attrs)
     }
 
-    // Constructor for inflating the view from XML with a style
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         initAttrs(context, attrs)
     }

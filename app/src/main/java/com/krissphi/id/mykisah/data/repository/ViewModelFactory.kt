@@ -30,8 +30,7 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(StoryViewModel::class.java) -> {
                 StoryViewModel(
                     Injection.provideStoryRepository(context),
-                    Injection.provideAuthRepository(context),
-                    Injection.provideUserPreference(context)
+                    Injection.provideAuthRepository(context)
                 ) as T
             }
             modelClass.isAssignableFrom(StoryDetailViewModel::class.java) -> {
