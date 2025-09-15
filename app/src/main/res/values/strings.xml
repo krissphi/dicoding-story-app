@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">MyKisah</string>
+
+    <string name="welcome">Welcome to MyKisah</string>
+    <string name="welcome_message">Tempat kita menyimpan cerita</string>
+
+    <string name="login">Masuk</string>
+    <string name="login_message">Ada Cerita Apa Hari Ini ? </string>
+    <string name="login_submessage">Silahkan masuk untuk melanjutkan</string>
+    <string name="login_success">Berhasil Masuk</string>
+
+    <string name="cancel">Batal</string>
+
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="regist">Daftar</string>
+    <string name="regist_message">Ayo Daftar Jangan Malu Malu</string>
+    <string name="regist_success">Berhasil Daftar</string>
+
+    <string name="logout">Keluar</string>
+    <string name="logout_message">Yakin nih mau keluar ?</string>
+    <string name="logout_success">Berhasil Keluar</string>
+
+    <string name="form_empty">Harap lengkapi data</string>
+
+    <string name="error_message">Terjadi kesalahan, silahkan coba lagi</string>
+
+    <string name="desc_ic_app">Image of Icon</string>
+    <string name="desc_img_story">Image of Story</string>
+
+    <string name="story_not_found">Cerita tidak ditemukan</string>
+    <string name="story_add">Cerita Baru</string>
+    <string name="story_write">Tulis Kepsyen Disini</string>
+
+    <string name="share">Bagikan</string>
+
+    <string name="permission_camera">Izin kamera diperlukan</string>
+    <string name="choose_image">Pilih gambar terlebih dahulu</string>
+
+</resources>

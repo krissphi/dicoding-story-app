@@ -1,0 +1,41 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MyKisah" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="android:colorBackground">@color/cream</item>
+        <item name="colorOnBackground">@color/coffee</item>
+        <item name="colorContainer">@color/pearl</item>
+        <item name="colorOnContainer">@color/coffee</item>
+        <item name="colorPrimary">@color/terracotta</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/sunset_apricot</item>
+        <item name="colorOnSecondary">@color/coffee</item>
+
+    </style>
+
+    <style name="Theme.MyKisah" parent="Base.Theme.MyKisah" />
+
+    <style name="Text.H1" parent="">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.BodyLarge" parent="">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="Text.BodyMedium" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="Text.BodySmall" parent="">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="Text.Label" parent="">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

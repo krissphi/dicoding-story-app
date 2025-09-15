@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyKisah</string>
+    <string name="welcome">Welcome to MyKisah</string>
+    <string name="or">or</string>
+    <string name="welcome_message">A place where we store stories</string>
+    <string name="login">Login</string>
+    <string name="login_message">What\'s the story today?</string>
+    <string name="login_submessage">Please log in to continue</string>
+    <string name="cancel">Cancel</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="error_message">An error occurred, please try again.</string>
+    <string name="desc_ic_app">Image of Icon</string>
+    <string name="desc_img_story">Image of Story</string>
+    <string name="next">Next</string>
+    <string name="login_success">Login Success</string>
+    <string name="login_failed">Login Failed</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="regist">Sign Up</string>
+    <string name="regist_message">Come on, register, don\'t be shy</string>
+    <string name="regist_submessage">Please register to continue</string>
+    <string name="regist_success">Registered Successfully</string>
+    <string name="regist_failed">Failed to Register</string>
+    <string name="logout">Log Out</string>
+    <string name="logout_message">Are you sure you want to go out?</string>
+    <string name="logout_success">Log Out Success</string>
+    <string name="form_empty">Please complete the data</string>
+    <string name="story_not_found">Story not found</string>
+    <string name="story_empty">There\'s no story yet, let\'s add a story</string>
+    <string name="story_add">New Story</string>
+    <string name="story_add_success">Successfully added story</string>
+    <string name="story_write">Write your comment here</string>
+    <string name="share">Share</string>
+    <string name="other">Other</string>
+</resources>
