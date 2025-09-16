@@ -1,8 +1,15 @@
 package com.krissphi.id.mykisah.data.remote.response
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "story")
 data class StoryItem(
+    @PrimaryKey
+    @field:SerializedName("id")
+    val id: String,
 
     @field:SerializedName("photoUrl")
     val photoUrl: String? = null,
@@ -16,12 +23,12 @@ data class StoryItem(
     @field:SerializedName("description")
     val description: String? = null,
 
+    @ColumnInfo(name = "lon", defaultValue = "0.0")
     @field:SerializedName("lon")
-    val lon: Any? = null,
+    val lon: Double?,
 
-    @field:SerializedName("id")
-    val id: String? = null,
-
+    // TAMBAHKAN ANOTASI @ColumnInfo
+    @ColumnInfo(name = "lat", defaultValue = "0.0")
     @field:SerializedName("lat")
-    val lat: Any? = null
+    val lat: Double?
 )

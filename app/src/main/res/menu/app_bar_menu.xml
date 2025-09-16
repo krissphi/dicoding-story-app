@@ -3,22 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_look_map"
-        android:title="@string/story_add"
+        android:id="@+id/action_add_story"
         android:icon="@drawable/outline_add_circle_24"
-        app:showAsAction="ifRoom"
-        />
+        android:title="@string/story_add"
+        app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_add_story"
-        android:title="@string/story_add"
-        android:icon="@drawable/outline_add_circle_24"
-        app:showAsAction="ifRoom"
-        />
+        android:id="@+id/action_look_map"
+        android:icon="@drawable/outline_map_24"
+        android:title="@string/maps"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_logout"
-        android:title="@string/logout"
-        android:orderInCategory="100"
         android:icon="@drawable/baseline_logout_24"
-        app:showAsAction="never" />
+        android:title="@string/logout"
+        app:showAsAction="ifRoom" />
+
 </menu>

@@ -12,33 +12,39 @@ import com.krissphi.id.mykisah.ui.page.story.main.StoryViewModel
 
 class ViewModelFactory(
     private val context: Context
-) : ViewModelProvider.Factory{
+) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
-                RegisterViewModel(Injection.provideAuthRepository(context)
+                RegisterViewModel(
+                    Injection.provideAuthRepository(context)
                 ) as T
             }
+
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(
                     Injection.provideAuthRepository(context),
                     Injection.provideUserPreference(context)
                 ) as T
             }
+
             modelClass.isAssignableFrom(StoryViewModel::class.java) -> {
                 StoryViewModel(
                     Injection.provideStoryRepository(context),
                     Injection.provideAuthRepository(context)
                 ) as T
             }
+
             modelClass.isAssignableFrom(StoryDetailViewModel::class.java) -> {
                 StoryDetailViewModel(Injection.provideStoryRepository(context)) as T
             }
+
             modelClass.isAssignableFrom(StoryCreateViewModel::class.java) -> {
                 StoryCreateViewModel(Injection.provideStoryRepository(context)) as T
             }
+
             modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
                 MapsViewModel(Injection.provideStoryRepository(context)) as T
             }

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.krissphi.id.mykisah.BuildConfig
 import com.krissphi.id.mykisah.R
 import com.krissphi.id.mykisah.data.local.UserPreference
 import com.krissphi.id.mykisah.data.local.dataStore
@@ -65,11 +66,13 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun playAnimation() {
-        ObjectAnimator.ofFloat(binding.imgIcon, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = 6000
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
+        if (!BuildConfig.IS_TESTING) {
+            ObjectAnimator.ofFloat(binding.imgIcon, View.TRANSLATION_X, -30f, 30f).apply {
+                duration = 6000
+                repeatCount = ObjectAnimator.INFINITE
+                repeatMode = ObjectAnimator.REVERSE
+            }.start()
+        }
 
         val login = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(100)
         val signup = ObjectAnimator.ofFloat(binding.btnRegist, View.ALPHA, 1f).setDuration(100)

@@ -56,7 +56,8 @@ class AuthRegisterActivity : AppCompatActivity() {
         registerViewModel.registrationResponse.observe(this) { result ->
             result.error?.let {
                 if (!it) {
-                    Toast.makeText(this, getString(R.string.regist_success), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.regist_success), Toast.LENGTH_SHORT)
+                        .show()
                     val intent = Intent(this, WelcomeActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
@@ -67,7 +68,8 @@ class AuthRegisterActivity : AppCompatActivity() {
 
         registerViewModel.errorMessage.observe(this) { result ->
             val message = result.message ?: getString(R.string.error_unknown)
-            Toast.makeText(this, getString(R.string.error_message, message), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.error_message, message), Toast.LENGTH_LONG)
+                .show()
         }
     }
 

@@ -9,12 +9,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.krissphi.id.mykisah.R
 import com.krissphi.id.mykisah.data.repository.ViewModelFactory
 import com.krissphi.id.mykisah.databinding.ActivityMainBinding
+import com.krissphi.id.mykisah.ui.adapter.LoadingStateAdapter
 import com.krissphi.id.mykisah.ui.adapter.StoryAdapter
 import com.krissphi.id.mykisah.ui.page.maps.MapsActivity
 import com.krissphi.id.mykisah.ui.page.story.create.StoryCreateActivity
@@ -22,7 +24,7 @@ import com.krissphi.id.mykisah.ui.page.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private val storyViewModel: StoryViewModel by viewModels { ViewModelFactory(this) }
     private lateinit var storyAdapter: StoryAdapter
 
@@ -66,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -105,8 +108,13 @@ class MainActivity : AppCompatActivity() {
         binding.rvStories.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = storyAdapter
-            setHasFixedSize(true)
         }
+
+        binding.rvStories.adapter = storyAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                storyAdapter.retry()
+            }
+        )
 
         val threshold = 6
         binding.fabAdd.hide()
@@ -121,21 +129,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        storyViewModel.stories.observe(this) { stories ->
-            storyAdapter.submitList(stories)
-        }
-        storyViewModel.errorMessage.observe(this) { msg ->
-            if (msg.isNotEmpty()) Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        storyViewModel.stories.observe(this) { pagingData ->
+            storyAdapter.submitData(lifecycle, pagingData)
         }
 
-        storyViewModel.isLoading.observe(this) { isLoading ->
-            binding.swipeRefreshLayout.isRefreshing = isLoading
+        storyAdapter.addLoadStateListener { loadState ->
+            val refreshState = loadState.refresh
+
+            binding.swipeRefreshLayout.isRefreshing = refreshState is LoadState.Loading
+
+            if (refreshState is LoadState.Error) {
+                val errorMessage = refreshState.error.localizedMessage
+                if (errorMessage != null) {
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
     private fun setupSwipeToRefresh() {
         binding.swipeRefreshLayout.setOnRefreshListener {
-            storyViewModel.fetchStories()
+            storyAdapter.refresh()
         }
     }
 

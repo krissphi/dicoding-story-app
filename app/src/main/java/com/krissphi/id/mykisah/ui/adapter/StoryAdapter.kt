@@ -2,13 +2,17 @@ package com.krissphi.id.mykisah.ui.adapter
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.core.app.ActivityOptionsCompat
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.krissphi.id.mykisah.R
@@ -17,7 +21,7 @@ import com.krissphi.id.mykisah.databinding.ItemStoryBinding
 import com.krissphi.id.mykisah.ui.page.story.detail.StoryDetailActivity
 import com.krissphi.id.mykisah.utils.formattedDate
 
-class StoryAdapter : ListAdapter<StoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class StoryAdapter : PagingDataAdapter<StoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -26,7 +30,9 @@ class StoryAdapter : ListAdapter<StoryItem, StoryAdapter.MyViewHolder>(DIFF_CALL
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val story = getItem(position)
-        holder.bind(story)
+        if (story != null) {
+            holder.bind(story)
+        }
         holder.itemView.animation =
             AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_animation)
     }
@@ -35,8 +41,15 @@ class StoryAdapter : ListAdapter<StoryItem, StoryAdapter.MyViewHolder>(DIFF_CALL
         RecyclerView.ViewHolder(binding.root) {
         fun bind(story: StoryItem) {
             binding.tvProfile.text = story.name
-            binding.tvProfile2.text = story.name
-            binding.tvCaption.text = story.description
+            val profile = story.name ?: ""
+            val caption = story.description ?: ""
+            val span = SpannableStringBuilder().apply {
+                append(profile)
+                setSpan(StyleSpan(Typeface.BOLD), 0, profile.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                append(" ")
+                append(caption)
+            }
+            binding.tvProfileCaption.text = span
             Glide.with(itemView.context)
                 .load(story.photoUrl)
                 .error(R.drawable.outline_broken_image_24)
@@ -62,8 +75,6 @@ class StoryAdapter : ListAdapter<StoryItem, StoryAdapter.MyViewHolder>(DIFF_CALL
 
                 context.startActivity(intent, options.toBundle())
             }
-
-
         }
     }
 

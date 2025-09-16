@@ -9,12 +9,14 @@
     <string name="cancel">Cancel</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
+    <string name="email_rule">Email Not Valid</string>
     <string name="password">Password</string>
     <string name="error_message">Error %1$s, please try again.</string>
     <string name="error_unknown">Unknown Error</string>
     <string name="desc_ic_app">Image of Icon</string>
     <string name="desc_img_story">Image of Story</string>
     <string name="login_success">Login Success</string>
+    <string name="password_rule">Password no less than 8</string>
     <string name="regist">Sign Up</string>
     <string name="regist_message">Come on, register, don\'t be shy</string>
     <string name="regist_success">Registered Successfully</string>
@@ -28,4 +30,10 @@
     <string name="share">Share</string>
     <string name="permission_camera">Need Camera Permission</string>
     <string name="choose_image">Choose Image First</string>
+    <string name="retry">Try Again</string>
+    <string name="maps">Say Maps</string>
+    <string name="location_add">Add Location</string>
+    <string name="location_off">Please turn on GPS</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="location_permission_denied">Location off</string>
 </resources>

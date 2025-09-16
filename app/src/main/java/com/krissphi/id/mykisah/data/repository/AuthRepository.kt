@@ -5,16 +5,15 @@ import com.krissphi.id.mykisah.data.remote.api.ApiService
 import com.krissphi.id.mykisah.data.remote.response.LoginResponse
 import com.krissphi.id.mykisah.data.remote.response.RegisterResponse
 
-class AuthRepository (
+class AuthRepository(
     private var apiService: ApiService,
     private val userPreference: UserPreference
-){
+) {
     suspend fun register(name: String, email: String, password: String): Result<RegisterResponse> {
         return try {
             val response = apiService.register(name, email, password)
             Result.success(response)
-        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }
@@ -28,7 +27,7 @@ class AuthRepository (
         }
     }
 
-    suspend fun logout(){
+    suspend fun logout() {
         userPreference.deleteTokenKey()
     }
 }

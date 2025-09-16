@@ -19,10 +19,9 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/cream"
             app:layout_collapseMode="pin"
-            app:title="@string/app_name"
-            app:popupTheme="@style/ThemeOverlay.Material3.Light"
             app:layout_scrollFlags="scroll|enterAlways"
-            />
+            app:popupTheme="@style/ThemeOverlay.Material3.Light"
+            app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -39,6 +38,7 @@
             tools:listitem="@layout/item_story" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
@@ -47,8 +47,8 @@
         android:layout_margin="16dp"
         android:backgroundTint="@color/white"
         android:clickable="true"
-        android:focusable="true"
         android:contentDescription="@string/story_add"
+        android:focusable="true"
         app:srcCompat="@drawable/baseline_add_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

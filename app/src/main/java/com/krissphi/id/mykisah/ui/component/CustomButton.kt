@@ -27,7 +27,11 @@ class CustomButton : AppCompatButton {
         initAttrs(context, attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         initAttrs(context, attrs)
     }
 
@@ -36,7 +40,10 @@ class CustomButton : AppCompatButton {
 
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomButton)
         try {
-            variant = ButtonVariant.entries.toTypedArray()[typedArray.getInt(R.styleable.CustomButton_buttonVariant, 0)]
+            variant = ButtonVariant.entries.toTypedArray()[typedArray.getInt(
+                R.styleable.CustomButton_buttonVariant,
+                0
+            )]
             disabledText = typedArray.getString(R.styleable.CustomButton_disabledText)
         } finally {
             typedArray.recycle()
@@ -44,13 +51,22 @@ class CustomButton : AppCompatButton {
 
         when (variant) {
             ButtonVariant.PRIMARY -> {
-                enabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button_primary) as Drawable
-                disabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button_primary_disable) as Drawable
+                enabledBackground =
+                    ContextCompat.getDrawable(context, R.drawable.bg_button_primary) as Drawable
+                disabledBackground = ContextCompat.getDrawable(
+                    context,
+                    R.drawable.bg_button_primary_disable
+                ) as Drawable
                 defaultTextColor = ContextCompat.getColor(context, android.R.color.white)
             }
+
             ButtonVariant.SECONDARY -> {
-                enabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button_secondary) as Drawable
-                disabledBackground = ContextCompat.getDrawable(context, R.drawable.bg_button_secondary_disable) as Drawable
+                enabledBackground =
+                    ContextCompat.getDrawable(context, R.drawable.bg_button_secondary) as Drawable
+                disabledBackground = ContextCompat.getDrawable(
+                    context,
+                    R.drawable.bg_button_secondary_disable
+                ) as Drawable
                 defaultTextColor = ContextCompat.getColor(context, R.color.coffee)
             }
         }

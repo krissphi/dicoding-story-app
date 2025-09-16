@@ -10,7 +10,9 @@
     <string name="cancel">Batal</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
+    <string name="email_rule">Format email tidak valid</string>
     <string name="password">Password</string>
+    <string name="password_rule">Password tidak boleh kurang dari 8 karakter</string>
     <string name="regist">Daftar</string>
     <string name="regist_message">Ayo Daftar Jangan Malu Malu</string>
     <string name="regist_success">Berhasil Daftar</string>
@@ -28,4 +30,10 @@
     <string name="share">Bagikan</string>
     <string name="permission_camera">Izin kamera diperlukan</string>
     <string name="choose_image">Pilih gambar terlebih dahulu</string>
+    <string name="location_off">Lokasi tidak aktif. Harap nyalakan GPS.</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="maps">Katakan Peta</string>
+    <string name="location_add">Tambahkan Lokasi</string>
+    <string name="location_permission_denied">Izin lokasi ditolak, fitur dimatikan.</string>
 </resources>

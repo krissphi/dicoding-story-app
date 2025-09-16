@@ -41,12 +41,12 @@ fun formattedDate(date: String): String {
     val week = day / 7
 
     return when {
-        sec < 60   -> "$sec detik lalu"
-        min < 60   -> "$min menit lalu"
-        hour < 24  -> "$hour jam lalu"
-        day < 7    -> "$day hari lalu"
-        week < 5   -> "$week minggu lalu"
-        else       -> outDate.format(Date(epoch))
+        sec < 60 -> "$sec detik lalu"
+        min < 60 -> "$min menit lalu"
+        hour < 24 -> "$hour jam lalu"
+        day < 7 -> "$day hari lalu"
+        week < 5 -> "$week minggu lalu"
+        else -> outDate.format(Date(epoch))
     }
 }
 

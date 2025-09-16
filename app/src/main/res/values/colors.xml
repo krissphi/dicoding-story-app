@@ -2,24 +2,15 @@
 <resources>
     <color name="grey">#9B9B9B</color>
 
-    <!--background-->
     <color name="cream">#F6EFE8</color>
-    <!--card-->
     <color name="pearl">#FFF9F2</color>
-    <!--primary-->
     <color name="terracotta">#CC6B49</color>
     <color name="terracotta_200">#E89F7A</color>
-    <!--on_primary-->
     <color name="white">#FFFFFFFF</color>
-    <!--secondary-->
     <color name="sunset_apricot">#F3A36B</color>
     <color name="sunset_apricot_200">#F7C19A</color>
-    <!--badge-->
-    <!--text_primary/on_secondary-->
     <color name="coffee">#1C1410</color>
-    <!--text_secondary-->
     <color name="brown_grey">#6B5E56</color>
-    <!--divider-->
 
 
 </resources>

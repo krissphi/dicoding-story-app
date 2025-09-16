@@ -4,17 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
     >
 
     <TextView
         android:id="@+id/tvProfile"
+        style="@style/Text.BodyMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
         android:textStyle="bold"
-        style="@style/Text.BodyMedium"
         tools:text="Profil" />
 
     <ImageView
@@ -22,45 +21,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:transitionName="story_image"
         android:contentDescription="@string/desc_img_story"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
-        />
+        android:transitionName="story_image"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvProfileCaption"
+        style="@style/Text.BodySmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:paddingHorizontal="16dp"
         android:paddingTop="8dp"
-        >
-
-        <TextView
-            android:id="@+id/tvProfile2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            style="@style/Text.BodySmall"
-            tools:text="Profil" />
-
-        <TextView
-            android:id="@+id/tvCaption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            style="@style/Text.BodySmall"
-            tools:text="Caption" />
-
-    </LinearLayout>
+        tools:text="Profil Caption panjang banget sampai dua baris" />
 
     <TextView
         android:id="@+id/tvCreatedAt"
+        style="@style/Text.Label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        android:textColor="@color/grey"
         android:paddingBottom="8dp"
-        style="@style/Text.Label"
+        android:textColor="@color/grey"
         tools:text="12 Januari 2024, 14:00" />
 
 </LinearLayout>

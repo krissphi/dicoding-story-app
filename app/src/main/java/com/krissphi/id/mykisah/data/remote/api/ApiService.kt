@@ -35,6 +35,8 @@ interface ApiService {
 
     @GET("stories")
     suspend fun getStories(
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 20
     ): StoryResponse
 
     @GET("stories/{id}")
@@ -47,13 +49,13 @@ interface ApiService {
     suspend fun createNewStory(
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody? = null,
+        @Part("lon") lon: RequestBody? = null
     ): StoryCreateResponse
 
     @GET("stories")
     suspend fun getStoriesWithLocation(
-        @Query("location") location : Int = 1,
+        @Query("location") location: Int = 1,
     ): StoryResponse
-
-
 
 }

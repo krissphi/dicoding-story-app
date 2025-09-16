@@ -34,7 +34,7 @@ class AuthLoginActivity : AppCompatActivity() {
         setupObserver()
     }
 
-    private fun setupAction(){
+    private fun setupAction() {
         binding.btnLogin.setOnClickListener {
             val email = binding.edtEmail.text.toString().trim()
             val password = binding.edtPassword.text.toString().trim()
@@ -46,7 +46,7 @@ class AuthLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupObserver(){
+    private fun setupObserver() {
         loginViewModel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
@@ -54,7 +54,8 @@ class AuthLoginActivity : AppCompatActivity() {
         loginViewModel.loginResponse.observe(this) { result ->
             result.error?.let {
                 if (!it) {
-                    Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT)
+                        .show()
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
@@ -65,7 +66,8 @@ class AuthLoginActivity : AppCompatActivity() {
 
         loginViewModel.errorResponse.observe(this) { result ->
             val message = result.message ?: getString(R.string.error_unknown)
-            Toast.makeText(this, getString(R.string.error_message, message), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.error_message, message), Toast.LENGTH_LONG)
+                .show()
         }
     }
 }

@@ -28,7 +28,6 @@ class StoryDetailActivity : AppCompatActivity() {
         ViewModelFactory(this)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         postponeEnterTransition()
@@ -52,7 +51,7 @@ class StoryDetailActivity : AppCompatActivity() {
         if (id != null) {
             viewModel.fetchStoryDetail(id)
         } else {
-            Toast.makeText(this, "Story ID not found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.story_not_found, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
@@ -72,7 +71,8 @@ class StoryDetailActivity : AppCompatActivity() {
                 else -> message
             }
             if (message.isNotEmpty()) {
-                Toast.makeText(this, getString(R.string.error_message, message), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.error_message, message), Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -109,7 +109,16 @@ class StoryDetailActivity : AppCompatActivity() {
         if (story.createdAt != null) {
             binding.tvCreatedAt.text = formattedDate(story.createdAt)
         }
-    }
 
+        if (story.lat != null && story.lon != null) {
+            binding.tvLat.text = getString(R.string.latitude, story.lat)
+            binding.tvLon.text = getString(R.string.longitude, story.lon)
+            binding.tvLat.visibility = View.VISIBLE
+            binding.tvLon.visibility = View.VISIBLE
+        } else {
+            binding.tvLat.visibility = View.GONE
+            binding.tvLon.visibility = View.GONE
+        }
+    }
 
 }

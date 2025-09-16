@@ -8,6 +8,8 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat.getString
+import com.krissphi.id.mykisah.R
 
 class CustomEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -19,7 +21,7 @@ class CustomEditText @JvmOverloads constructor(
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-               validateForm(s)
+                validateForm(s)
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -32,18 +34,16 @@ class CustomEditText @JvmOverloads constructor(
         textAlignment = TEXT_ALIGNMENT_VIEW_START
     }
 
-    private fun validateForm(s: CharSequence){
+    private fun validateForm(s: CharSequence) {
         if (isEmailType()) {
             error = if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-                "Format email tidak valid"
+                getString(context, R.string.email_rule)
             } else {
                 null
             }
-        }
-
-        else if (isPasswordType()) {
+        } else if (isPasswordType()) {
             if (s.toString().length < 8) {
-                setError("Password tidak boleh kurang dari 8 karakter", null)
+                setError(getString(context, R.string.password_rule), null)
             } else {
                 error = null
             }
