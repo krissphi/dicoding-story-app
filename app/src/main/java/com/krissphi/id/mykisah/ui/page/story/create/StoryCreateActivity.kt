@@ -1,7 +1,6 @@
 package com.krissphi.id.mykisah.ui.page.story.create
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -18,7 +17,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.krissphi.id.mykisah.data.repository.ViewModelFactory
 import com.krissphi.id.mykisah.databinding.ActivityStoryCreateBinding
-import com.krissphi.id.mykisah.ui.page.story.main.MainActivity
 import com.krissphi.id.mykisah.utils.getImageUri
 import com.krissphi.id.mykisah.utils.reduceFileImage
 import com.krissphi.id.mykisah.utils.uriToFile
@@ -212,13 +210,15 @@ class StoryCreateActivity : AppCompatActivity() {
         viewModel.uploadResult.observe(this) { result ->
             result.onSuccess { response ->
                 Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
+                setResult(RESULT_OK)
                 finish()
             }
             result.onFailure { error ->
-                Toast.makeText(this, getString(R.string.error_message, error), Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this,
+                    getString(R.string.error_message, error.message),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         }

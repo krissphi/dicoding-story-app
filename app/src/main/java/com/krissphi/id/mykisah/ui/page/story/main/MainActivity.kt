@@ -2,9 +2,12 @@ package com.krissphi.id.mykisah.ui.page.story.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val storyViewModel: StoryViewModel by viewModels { ViewModelFactory(this) }
     private lateinit var storyAdapter: StoryAdapter
+    private var isStoryAdded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,23 +102,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private val createStoryLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            isStoryAdded = true
+            storyAdapter.refresh()
+        }
+    }
+
     private fun goToCreateStory() {
         val intent = Intent(this, StoryCreateActivity::class.java)
-        startActivity(intent)
+        createStoryLauncher.launch(intent)
     }
 
     private fun setupRecycleView() {
         storyAdapter = StoryAdapter()
         binding.rvStories.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = storyAdapter
+            adapter = storyAdapter.withLoadStateFooter(
+                footer = LoadingStateAdapter { storyAdapter.retry() }
+            )
         }
 
-        binding.rvStories.adapter = storyAdapter.withLoadStateFooter(
-            footer = LoadingStateAdapter {
-                storyAdapter.retry()
+        storyAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                super.onItemRangeInserted(positionStart, itemCount)
+                if (positionStart == 0 && isStoryAdded) {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        binding.rvStories.scrollToPosition(0)
+                    }, 100)
+                    isStoryAdded = false
+                }
             }
-        )
+        })
 
         val threshold = 6
         binding.fabAdd.hide()
@@ -133,16 +154,14 @@ class MainActivity : AppCompatActivity() {
             storyAdapter.submitData(lifecycle, pagingData)
         }
 
+        // Listener ini HANYA untuk loading state & error, BUKAN untuk scroll
         storyAdapter.addLoadStateListener { loadState ->
-            val refreshState = loadState.refresh
+            binding.swipeRefreshLayout.isRefreshing =
+                loadState.mediator?.refresh is LoadState.Loading
 
-            binding.swipeRefreshLayout.isRefreshing = refreshState is LoadState.Loading
-
-            if (refreshState is LoadState.Error) {
-                val errorMessage = refreshState.error.localizedMessage
-                if (errorMessage != null) {
-                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
-                }
+            val errorState = loadState.mediator?.refresh as? LoadState.Error
+            errorState?.error?.localizedMessage?.let { message ->
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
         }
     }
