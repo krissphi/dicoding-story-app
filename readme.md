@@ -6,12 +6,11 @@ Android application for sharing stories (special for the Dicoding ecosystem) wit
 
 ## Screenshot
 
-* Login & Register
-![Login Screen](assets/login_page.jpg)
-![register Screen](assets/register_page.jpg)
-
-* Story List + Loading/Empty/Error
-![Story List](assets/main_page.jpg)
+<p align="center">
+  <img src="assets/login_page.jpg" width="256" alt="Login Screen" />
+  <img src="assets/register_page.jpg" width=256" alt="Register Screen" />
+  <img src="assets/main_page.jpg" width="256" alt="Story List Screen" />
+</p>
 
 ---
 
